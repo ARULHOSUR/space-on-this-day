@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Space On This Day – Explore Space History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Your entire CSS remains unchanged --- */
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: radial-gradient(ellipse at 60% 40%, #23284a 0%, #12142b 65%, #07081a 100%);
+      overflow-x: hidden;
+      position: relative;
+    }
+    .stars, .stars2, .stars3 {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background-repeat: repeat;
+      opacity: 0.7;
+    }
+    .stars {
+      background-image: url("data:image/svg+xml;utf8,<svg width='100' height='100' xmlns='http://www.w3.org/2000/svg'><circle cx='20' cy='20' r='1.2' fill='white' opacity='0.8'/><circle cx='80' cy='60' r='0.8' fill='white' opacity='0.5'/><circle cx='40' cy='80' r='1.1' fill='white' opacity='0.7'/></svg>");
+      animation: moveStars 60s linear infinite;
+    }
+    .stars2 {
+      background-image: url("data:image/svg+xml;utf8,<svg width='100' height='100' xmlns='http://www.w3.org/2000/svg'><circle cx='10' cy='90' r='0.8' fill='white' opacity='0.3'/><circle cx='70' cy='30' r='1.1' fill='white' opacity='0.4'/></svg>");
+      animation: moveStars 100s linear infinite reverse;
+      opacity: 0.4;
+    }
+    .stars3 {
+      background-image: url("data:image/svg+xml;utf8,<svg width='100' height='100' xmlns='http://www.w3.org/2000/svg'><circle cx='60' cy='10' r='0.6' fill='white' opacity='0.2'/><circle cx='90' cy='70' r='0.7' fill='white' opacity='0.25'/></svg>");
+      animation: moveStars 140s linear infinite;
+      opacity: 0.25;
+    }
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: 100vw 100vh; }
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      left: 50%; top: 20%;
+      width: 800px; height: 600px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at 60% 40%, #7f53ac88 0%, #657ced44 60%, transparent 100%);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(40px);
+      animation: nebulaPulse 16s ease-in-out infinite alternate;
+    }
+    @keyframes nebulaPulse {
+      0% { opacity: 0.25; }
+      100% { opacity: 0.42; }
+    }
+    header {
+      position: relative;
+      z-index: 2;
+      padding: 2rem 1rem 1rem 1rem;
+      text-align: center;
+      color: #fff;
+    }
+    header h1 {
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 16px #1a1a40;
+    }
+    nav {
+      margin: 1rem 0 0 0;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      align-items: center;
+    }
+    nav input[type="date"] {
+      background: #23234f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: 0 2px 10px #0002;
+    }
+    nav button {
+      background: linear-gradient(90deg, #7f53ac 0%, #657ced 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 10px #0002;
+      transition: background 0.2s;
+    }
+    nav button:hover {
+      background: linear-gradient(90deg, #657ced 0%, #7f53ac 100%);
+    }
+    main {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem 5rem 1rem;
+    }
+    h2, h3 {
+      color: #fff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 2px 8px #1a1a40;
+    }
+    .timeline {
+      margin-bottom: 2rem;
+      min-height: 60px;
+    }
+    .timeline-event {
+      background: rgba(24,28,58,0.85);
+      border-radius: 14px;
+      margin-bottom: 1.2rem;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 2px 16px #0003;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid #7f53ac;
+    }
+    .timeline-event .event-date {
+      color: #ffaf7b;
+      font-weight: bold;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-event .event-title {
+      font-size: 1.13rem;
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+      color: #7f53ac;
+    }
+    .timeline-event .event-desc {
+      font-size: 0.98rem;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-event img {
+      width: 100%;
+      max-width: 180px;
+      max-height: 120px;
+      border-radius: 9px;
+      margin: 0.4rem 0 0.2rem 0;
+      box-shadow: 0 2px 12px #0004;
+      object-fit: cover;
+      display: block;
+    }
+    .timeline-loading {
+      color: #7f53ac;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 1.2rem 0 0.7rem 0;
+      font-family: 'Orbitron', Arial, sans-serif;
+      letter-spacing: 1px;
+    }
+    .explore-3d {
+      display: inline-block;
+      margin-top: 0.3rem;
+      color: #fff;
+      background: linear-gradient(90deg, #7f53ac 0%, #657ced 100%);
+      padding: 0.22rem 0.8rem;
+      border-radius: 7px;
+      font-size: 0.97rem;
+      text-decoration: none;
+      box-shadow: 0 1px 6px #0002;
+      transition: background 0.2s;
+    }
+    .explore-3d:hover {
+      background: linear-gradient(90deg, #657ced 0%, #7f53ac 100%);
+    }
+    .widget-box {
+      background: rgba(24,28,58,0.87);
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      padding: 1.2rem 1.2rem 1.1rem 1.2rem;
+      box-shadow: 0 2px 18px #0003;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .widget-box h3 {
+      color: #ffaf7b;
+      margin-top: 0;
+      font-size: 1.15rem;
+    }
+    .widget-box img {
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 12px #0004;
+      max-width: 180px;
+      max-height: 120px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+    .live-widgets {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .live-widgets .widget-box {
+      flex: 1 1 300px;
+      min-width: 260px;
+      padding: 0.7rem 0.7rem 0.5rem 0.7rem;
+    }
+    .iss-iframe-wrap {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .iss-fallback {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(24,28,58,0.93);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      z-index: 2;
+      border-radius: 10px;
+      text-align: center;
+      padding: 0.7rem;
+      display: none;
+    }
+    iframe {
+      border: none;
+      border-radius: 10px;
+      background: #000;
+      width: 100%;
+      height: 100%;
+      min-height: 120px;
+    }
+    ul {
+      color: #fff;
+    }
+    footer {
+      text-align: center;
+      color: #fff;
+      background: rgba(24,28,58,0.7);
+      padding: 1.2rem 0 1.5rem 0;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      margin-top: 3rem;
+      border-top: 1px solid #657ced44;
+      position: relative;
+      z-index: 2;
+    }
+    #chatbot {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 340px;
+      max-width: 90vw;
+      background: rgba(30, 34, 60, 0.65);
+      backdrop-filter: blur(12px) saturate(130%);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px #0005, 0 1.5px 0.5px #657ced55;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1.5px solid #657ced55;
+      font-family: 'Roboto', Arial, sans-serif;
+      animation: chatbotPop 0.7s cubic-bezier(.4,1.6,.6,1) 1;
+    }
+    @keyframes chatbotPop {
+      0% { transform: scale(0.8) translateY(80px); opacity: 0;}
+      100% { transform: scale(1) translateY(0); opacity: 1;}
+    }
+    #chatbot-header {
+      background: linear-gradient(90deg, #7f53ac 0%, #657ced 100%);
+      color: #fff;
+      font-family: 'Orbitron', Arial, sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      text-align: left;
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1.5px solid #657ced44;
+      box-shadow: 0 2px 12px #0002;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    #chatbot-header::before {
+      content: "🤖";
+      font-size: 1.3rem;
+      margin-right: 0.5rem;
+      filter: drop-shadow(0 0 6px #fff8);
+    }
+    #chatbot-messages {
+      flex: 1;
+      padding: 1.1rem 1rem 0.5rem 1rem;
+      overflow-y: auto;
+      max-height: 340px;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      scroll-behavior: smooth;
+    }
+    .chatbot-message {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 0.2rem;
+      gap: 0.5rem;
+    }
+    .chatbot-message.bot {
+      justify-content: flex-start;
+    }
+    .chatbot-message.user {
+      justify-content: flex-end;
+    }
+    .chatbot-avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #657ced 0%, #7f53ac 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #fff;
+      box-shadow: 0 1px 6px #0002;
+      flex-shrink: 0;
+    }
+    .chatbot-bubble {
+      max-width: 75%;
+      padding: 0.7rem 1rem;
+      border-radius: 16px 16px 16px 4px;
+      font-size: 1rem;
+      background: rgba(101,124,237,0.13);
+      color: #fff;
+      box-shadow: 0 2px 8px #0002;
+      word-break: break-word;
+      transition: background 0.2s;
+      border: 1px solid #657ced44;
+    }
+    .chatbot-message.bot .chatbot-bubble {
+      border-radius: 16px 16px 16px 4px;
+      background: rgba(101,124,237,0.13);
+      color: #fff;
+    }
+    .chatbot-message.user .chatbot-bubble {
+      border-radius: 16px 16px 4px 16px;
+      background: rgba(215,109,119,0.22);
+      color: #fff;
+      border: 1px solid #d76d7744;
+    }
+    #chatbot-input-area {
+      display: flex;
+      align-items: center;
+      background: rgba(24,28,58,0.7);
+      padding: 0.7rem 1rem;
+      border-top: 1.5px solid #657ced44;
+      gap: 0.6rem;
+    }
+    #chatbot-input {
+      flex: 1;
+      background: rgba(30, 34, 60, 0.35);
+      border: none;
+      border-radius: 12px;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      color: #fff;
+      outline: none;
+      box-shadow: 0 1px 6px #0001;
+      transition: background 0.2s;
+    }
+    #chatbot-input:focus {
+      background: rgba(101,124,237,0.07);
+    }
+    #chatbot-send {
+      background: linear-gradient(90deg, #7f53ac 0%, #657ced 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 38px; height: 38px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #0002;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, transform 0.15s;
+    }
+    #chatbot-send:active {
+      transform: scale(0.93);
+      background: linear-gradient(90deg, #657ced 0%, #7f53ac 100%);
+    }
+    @media (max-width: 600px) {
+      main { padding: 1rem 0.2rem 5rem 0.2rem; }
+      .widget-box, .timeline-event { padding: 0.9rem 0.7rem; }
+      .live-widgets { flex-direction: column; gap: 0.5rem; }
+      #chatbot { right: 4vw; bottom: 4vw; width: 98vw; max-width: 98vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+  <header>
+    <h1>🚀 Space On This Day</h1>
+    <nav>
+      <input type="date" id="datePicker">
+      <button id="todayBtn">Today</button>
+    </nav>
+  </header>
+  
+  <main>
+    <section>
+      <h2 style="text-align:center;margin-bottom:1.5rem;">
+        Astronomical Events on <span id="currentDate"></span>
+      </h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+    
+    <section>
+      <div class="widget-box" id="apod-box">
+        <h3>🌠 NASA Astronomy Picture of the Day</h3>
+        <img id="apod-image">
+        <h4 id="apod-title"></h4>
+        <p id="apod-desc" style="font-size:0.98rem;"></p>
+        <a id="apod-hd" href="#" target="_blank" class="explore-3d" style="display:none;">View HD Image</a>
+      </div>
+      
+      <div class="live-widgets">
+        <div class="widget-box">
+          <h3>🛰️ ISS Live Stream</h3>
+          <div class="iss-iframe-wrap">
+            <iframe id="iss-live" src="https://www.youtube.com/embed/21X5lGlDOfg?autoplay=1&mute=1" allowfullscreen allow="autoplay"></iframe>
+            <div class="iss-fallback" id="iss-fallback">
+              <div>ISS Live Stream is currently unavailable.<br>
+                <a href="https://www.youtube.com/watch?v=21X5lGlDOfg" target="_blank" style="color:#ffaf7b;text-decoration:underline;">Watch on YouTube</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-box">
+          <h3>🌌 NASA Eyes: Solar System 3D</h3>
+          <iframe src="https://eyes.nasa.gov/apps/solar-system/#/home" height="120"></iframe>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <div class="widget-box" id="mars-box">
+        <h3>🔴 Mars Rover Photos (This Day in History)</h3>
+        <div id="mars-photos"></div>
+      </div>
+      <div class="widget-box" id="fireball-box">
+        <h3>☄️ Meteor Fireball Events (This Day in History)</h3>
+        <div id="fireball-events"></div>
+      </div>
+    </section>
+    
+    <section>
+      <h2 style="font-size:1.2rem;margin-bottom:1rem;">Explore More</h2>
+      <ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:center;">
+        <li>
+          <a class="explore-3d" href="https://eyes.nasa.gov/apps/solar-system/#/home" target="_blank">🪐 NASA Eyes on the Solar System</a>
+        </li>
+        <li>
+          <a class="explore-3d" href="https://science.nasa.gov/mission/hubble/multimedia/online-activities/" target="_blank">🔭 Hubble Online Activities</a>
+        </li>
+        <li>
+          <a class="explore-3d" href="https://viewspace.org" target="_blank">🌌 ViewSpace Interactives</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+  
+  <aside id="chatbot">
+    <div id="chatbot-header">AstroBot</div>
+    <div id="chatbot-messages">
+      <div class="chatbot-message bot">
+        <span class="chatbot-avatar">🤖</span>
+        <span class="chatbot-bubble">Hi! Ask me about today's space events, or pick a date to explore cosmic history. 🚀</span>
+      </div>
+    </div>
+    <div id="chatbot-input-area">
+      <input id="chatbot-input" type="text" placeholder="Ask me anything about space history...">
+      <button id="chatbot-send" title="Send"><span>➤</span></button>
+    </div>
+  </aside>
+  
+  <footer>
+    &copy; 2025 Space On This Day &mdash; Inspired by NASA and the wonders of the universe
+  </footer>
+  
+  <script>
+    // ---- CONFIG ----
+    const NASA_API_KEY = "OoxckJ8QG8S9kgchyGiuOayPOtcBevJ63MP01UOz";
+    const WIKI_API_URL = "https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/all";
+    const astroKeywords = [
+      "astronomy","astronomical","space","nasa","rocket","spacecraft","satellite","planet","star","galaxy","comet","meteor","eclipse","supernova","black hole","nebula","universe","lunar","solar","mars","venus","jupiter","saturn","uranus","neptune","pluto","asteroid","cosmonaut","astronaut","observatory","telescope","cosmos","cosmic","apollo","voyager","hubble","iss","international space station"
+    ];
+    function isAstronomicalEvent(text) {
+      const lower = text.toLowerCase();
+      return astroKeywords.some(word => lower.includes(word));
+    }
+    function pad(n) { return n < 10 ? '0'+n : n; }
+    function formatDate(d) {
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    function getISODate(d) {
+      return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+    }
+    function getMonthDayKey(d) {
+      return pad(d.getMonth()+1) + '-' + pad(d.getDate());
+    }
+    const eventsDB = {
+      "06-25": [
+        {
+          year: 2003,
+          title: "Mars Exploration Rover Spirit Launch",
+          desc: "NASA’s Spirit rover launched from Cape Canaveral, beginning its journey to the Red Planet. Spirit would go on to uncover crucial evidence of past water on Mars.",
+          img: "https://mars.nasa.gov/system/news_items/main_images/4455_PIA05571-320.jpg",
+          mediaType: "image",
+          link3d: "https://eyes.nasa.gov/apps/mars2020/#/home"
+        }
+      ]
+    };
+    const datePicker = document.getElementById('datePicker');
+    const todayBtn = document.getElementById('todayBtn');
+    const timeline = document.getElementById('timeline');
+    const currentDateSpan = document.getElementById('currentDate');
+    const issIframe = document.getElementById('iss-live');
+    const issFallback = document.getElementById('iss-fallback');
+    function renderEvents(events, dateObj, append=false) {
+      if (!append) timeline.innerHTML = '';
+      events.forEach(ev => {
+        const card = document.createElement('div');
+        card.className = 'timeline-event';
+        card.innerHTML = `
+          <div class="event-date">${formatDate(new Date(ev.year, dateObj.getMonth(), dateObj.getDate()))}</div>
+          <div class="event-title">${ev.title}</div>
+          <div class="event-desc">${ev.desc}</div>
+          ${ev.mediaType === 'image' && ev.img ? `<img src="${ev.img}" alt="${ev.title}" onerror="this.style.display='none'">` : ''}
+          ${ev.link3d ? `<a class="explore-3d" href="${ev.link3d}" target="_blank">Explore in 3D</a>` : ''}
+        `;
+        timeline.appendChild(card);
+      });
+    }
+    async function fetchWikipediaEvents(dateObj) {
+      const month = pad(dateObj.getMonth() + 1);
+      const day = pad(dateObj.getDate());
+      try {
+        const response = await fetch(`${WIKI_API_URL}/${month}/${day}`);
+        if (!response.ok) return [];
+        const data = await response.json();
+        return (data.events || []).filter(event => isAstronomicalEvent(event.text))
+        .map(event => ({
+          year: event.year,
+          title: event.text,
+          desc: event.pages?.[0]?.extract || "Learn more on Wikipedia",
+          img: event?.pages?.[0]?.thumbnail?.source || "",
+          mediaType: "image"
+        }));
+      } catch {
+        return [];
+      }
+    }
+    // ---- IMPROVED loadEventsFor FUNCTION ----
+    async function loadEventsFor(dateObj) {
+      const key = getMonthDayKey(dateObj);
+      const staticEvents = (eventsDB[key] || []).filter(ev => isAstronomicalEvent(ev.title + " " + ev.desc));
+      timeline.innerHTML = '';
+      if (staticEvents.length) {
+        renderEvents(staticEvents, dateObj);
+      } else {
+        timeline.innerHTML = `<div class="timeline-loading">Loading more astronomical events...</div>`;
+      }
+      try {
+        const wikiEvents = await fetchWikipediaEvents(dateObj);
+        if (wikiEvents.length) {
+          if (staticEvents.length) {
+            renderEvents(wikiEvents, dateObj, true);
+          } else {
+            timeline.innerHTML = '';
+            renderEvents(wikiEvents, dateObj);
+          }
+        } else if (!staticEvents.length) {
+          timeline.innerHTML = `<div class="timeline-loading">No astronomical events found for this date.</div>`;
+        }
+      } catch {
+        if (!staticEvents.length) {
+          timeline.innerHTML = `<div class="timeline-loading">Failed to load astronomical events.</div>`;
+        }
+      }
+    }
+    // -----------------------------------------
+    function setDate(dateObj) {
+      datePicker.value = getISODate(dateObj);
+      currentDateSpan.textContent = formatDate(dateObj);
+      loadEventsFor(dateObj);
+      fetchAPOD(dateObj);
+      fetchMarsPhotos(dateObj);
+      fetchFireballs(dateObj);
+    }
+    function fetchAPOD(dateObj) {
+      const img = document.getElementById('apod-image');
+      const title = document.getElementById('apod-title');
+      const desc = document.getElementById('apod-desc');
+      const hd = document.getElementById('apod-hd');
+      img.src = ""; 
+      title.textContent = "Loading...";
+      desc.textContent = "";
+      hd.style.display = "none";
+      fetch(`https://api.nasa.gov/planetary/apod?date=${getISODate(dateObj)}&api_key=${NASA_API_KEY}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.media_type === "image") {
+            img.style.display = "block";
+            img.src = data.url;
+            img.alt = data.title;
+            hd.href = data.hdurl || data.url;
+            hd.style.display = "inline-block";
+          } else if (data.media_type === "video") {
+            img.style.display = "none";
+            desc.innerHTML += `<br><a href="${data.url}" target="_blank">Watch Video</a>`;
+          }
+          title.textContent = data.title || "";
+          desc.textContent = data.explanation || "";
+        })
+        .catch(() => {
+          title.textContent = "APOD unavailable for this date";
+          desc.textContent = "NASA Astronomy Picture of the Day couldn't be loaded. Try another date.";
+          img.style.display = "none";
+        });
+    }
+    function fetchMarsPhotos(dateObj) {
+      const marsPhotosDiv = document.getElementById('mars-photos');
+      marsPhotosDiv.innerHTML = "<p>Loading Mars photos...</p>";
+      const earthDate = `${dateObj.getFullYear()}-${pad(dateObj.getMonth()+1)}-${pad(dateObj.getDate())}`;
+      fetch(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${earthDate}&api_key=${NASA_API_KEY}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.photos && data.photos.length > 0) {
+            marsPhotosDiv.innerHTML = data.photos.slice(0, 3).map(photo => `
+              <div style="margin-bottom:1rem;">
+                <img src="${photo.img_src}" alt="Mars photo">
+                <p style="font-size:0.9rem;margin-top:0.5rem;">Sol ${photo.sol} (${photo.camera.full_name})</p>
+              </div>
+            `).join('');
+          } else {
+            marsPhotosDiv.innerHTML = `<p>No Mars photos available for ${formatDate(dateObj)}</p>`;
+          }
+        })
+        .catch(() => {
+          marsPhotosDiv.innerHTML = `<p>Failed to load Mars photos</p>`;
+        });
+    }
+    function fetchFireballs(dateObj) {
+      const fireballDiv = document.getElementById('fireball-events');
+      fireballDiv.innerHTML = "<p>Checking fireball reports...</p>";
+      const dateStr = getISODate(dateObj);
+      fetch(`https://ssd-api.jpl.nasa.gov/fireball.api?date-min=${dateStr}&date-max=${dateStr}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.count > 0) {
+            fireballDiv.innerHTML = `
+              <p>${data.count} fireball events recorded:</p>
+              <ul style="padding-left:1.5rem;">
+                ${data.data.map(event => `
+                  <li>${event.date} - Energy: ${event.energy} Joules</li>
+                `).join('')}
+              </ul>
+            `;
+          } else {
+            fireballDiv.innerHTML = `<p>No fireball events reported for ${formatDate(dateObj)}</p>`;
+          }
+        })
+        .catch(() => {
+          fireballDiv.innerHTML = `<p>Fireball data unavailable</p>`;
+        });
+    }
+    if (issIframe) {
+      let issTimeout = setTimeout(() => {
+        issFallback.style.display = 'flex';
+      }, 5000);
+      issIframe.onload = function() {
+        clearTimeout(issTimeout);
+        issFallback.style.display = 'none';
+      };
+      issIframe.onerror = function() {
+        issFallback.style.display = 'flex';
+      };
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const today = new Date();
+      setDate(today);
+      datePicker.value = getISODate(today);
+    });
+    datePicker.addEventListener('change', () => {
+      const picked = new Date(datePicker.value);
+      setDate(picked);
+    });
+    todayBtn.addEventListener('click', () => {
+      const today = new Date();
+      setDate(today);
+    });
+    // Chatbot
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.getElementById('chatbot-send');
+    function addBotMessage(text) {
+      const msg = document.createElement('div');
+      msg.className = 'chatbot-message bot';
+      msg.innerHTML = `<span class="chatbot-avatar">🤖</span><span class="chatbot-bubble">${text}</span>`;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+    function addUserMessage(text) {
+      const msg = document.createElement('div');
+      msg.className = 'chatbot-message user';
+      msg.innerHTML = `<span class="chatbot-bubble">${text}</span><span class="chatbot-avatar" style="background:linear-gradient(135deg,#d76d77 0%,#ffaf7b 100%);">🧑‍🚀</span>`;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+    function botReply(userText) {
+      const today = new Date();
+      const dateStr = formatDate(today);
+      const lower = userText.toLowerCase();
+      if (lower.includes("hello") || lower.includes("hi")) {
+        addBotMessage("Hello! 👋 I'm AstroBot. Ask me about today's space events or pick a date to explore cosmic history.");
+      } else if (lower.includes("today")) {
+        addBotMessage(`Today's date is ${dateStr}. Check out the events and NASA widgets above!`);
+      } else if (lower.includes("apod") || lower.includes("picture")) {
+        addBotMessage("The Astronomy Picture of the Day (APOD) is shown above. Want to know more about it?");
+      } else if (lower.includes("mars")) {
+        addBotMessage("Mars Rover photos for this day in history are available in the Mars Rover Photos widget above.");
+      } else if (lower.includes("fireball") || lower.includes("meteor")) {
+        addBotMessage("Meteor fireball events for this day are shown in the Meteor Fireball Events widget.");
+      } else if (lower.includes("event") || lower.includes("happened")) {
+        addBotMessage("Check the timeline above for significant space events on your selected date!");
+      } else if (lower.includes("thank")) {
+        addBotMessage("You're welcome! 🚀");
+      } else {
+        addBotMessage("I'm here to help you explore space history. Try asking about today's events, APOD, Mars, or meteors!");
+      }
+    }
+    function handleChatbotSend() {
+      const text = chatbotInput.value.trim();
+      if (!text) return;
+      addUserMessage(text);
+      chatbotInput.value = '';
+      setTimeout(() => botReply(text), 600);
+    }
+    chatbotSend.addEventListener('click', handleChatbotSend);
+    chatbotInput.addEventListener('keydown', e => {
+      if (e.key === "Enter") handleChatbotSend();
+    });
+  </script>
+</body>
+</html>
