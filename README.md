@@ -1,31 +1,31 @@
 🚀 Space On This Day
 An interactive web app to explore space history, astronomical events, NASA’s Astronomy Picture of the Day, Mars Rover photos, meteor fireball reports, ISS live stream, and more—all in one place!
 
-📁 Project Demo
+## 📁  Project Demo
 
 ![image](https://github.com/user-attachments/assets/546a7adf-791f-4206-8872-13a95fb535c7)
 ![image](https://github.com/user-attachments/assets/83ef19a4-af59-4395-b3e4-37f048a9c602)
 ![image](https://github.com/user-attachments/assets/9a62d8f0-1d38-4971-af8a-33378d1925f6)
 
-📌 Features
+## 📌 Features
 
-Space Events Timeline:
+## Space Events Timeline:
 
 Explore major astronomical and space exploration events for any chosen date.
 
-NASA APOD Integration:
+## NASA APOD Integration:
 
 Displays NASA’s Astronomy Picture of the Day with description and HD image link.
 
-Mars Rover Photos:
+## Mars Rover Photos:
 
 View Mars rover images taken on the selected date.
 
-Meteor Fireball Reports:
+## Meteor Fireball Reports:
 
 Real-time meteor fireball events from NASA JPL.
 
-ISS Live Stream:
+## ISS Live Stream:
 
 Watch the International Space Station live as it orbits Earth.
 
@@ -33,16 +33,16 @@ NASA 3D Widgets:
 
 Interact with NASA Eyes on the Solar System and other educational tools.
 
-AstroBot Chatbot:
+## AstroBot Chatbot:
 
 Ask questions about space events, APOD, Mars, meteors, and more!
 
-Responsive Design:
+## Responsive Design:
 
 Works smoothly on desktop and mobile browsers.
 
 
-📊 Data Sources
+## 📊 Data Sources
 
 NASA APIs
 
@@ -53,7 +53,7 @@ NASA JPL Fireball Data
 NASA Eyes on the Solar System
 
 
-📝 Example Use Cases
+## 📝 Example Use Cases
 
 Learn what happened in space history on your birthday.
 
@@ -64,7 +64,7 @@ Watch the ISS live and explore the solar system in 3D.
 Ask AstroBot about today’s space events or any cosmic topic!
 
 
-🎓 Skills Demonstrated
+## 🎓 Skills Demonstrated
 
 Web development (HTML, CSS, JavaScript)
 
@@ -77,7 +77,7 @@ Responsive and mobile-first design
 Chatbot interaction logic
 
 
-🛠 Tech Stack
+## 🛠 Tech Stack
 
 HTML5, CSS3, JavaScript (Vanilla)
 
@@ -89,7 +89,7 @@ Streamed YouTube embeds for ISS live
 
 Responsive design principles
 
-🚧 Future Improvements
+## 🚧 Future Improvements
 
 Add user accounts and favorites
 
@@ -101,10 +101,23 @@ PWA (Progressive Web App) support for offline use
 
 Enhanced chatbot with AI/NLP
 
-🙋‍♂️ Authors
+## 🙋‍♂️ Authors
 
-H R S ARUL
+## H R S ARUL 
 
-AANYA MALLAREDDY
+ [Linkedin](https://www.linkedin.com/in/arul-h-r-s-020a81342)
+
+
+## AANYA MALLAREDDY
+
+[Linkedin](https://www.linkedin.com/in/aanya-mallareddy-b1b0a0355)
+
+## 📢 Acknowledgments
+
+NASA Open APIs
+
+Wikimedia Foundation
+
+JetBrains Space for documentation inspiration
 
 
