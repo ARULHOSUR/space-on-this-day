@@ -101,7 +101,7 @@ PWA (Progressive Web App) support for offline use
 
 Enhanced chatbot with AI/NLP
 
-## 🙋‍♂️ Authors
+### 🙋‍♂️ Authors
 
 ## H R S ARUL 
 
