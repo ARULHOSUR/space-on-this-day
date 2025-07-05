@@ -89,17 +89,33 @@ Streamed YouTube embeds for ISS live
 
 Responsive design principles
 
-## 🚧 Future Improvements
 
-Add user accounts and favorites
+## Setup Instructions
+1. Prerequisites
+   
+Web Browser : Latest version of Chrome, Firefox, Edge, or Safari.
 
-More detailed event filtering and search
+Internet Connection: Required for fetching live data from NASA and Wikipedia APIs.
 
-Additional NASA and ESA data integrations
+2. Installation
+   
+Download or Clone the Repository
 
-PWA (Progressive Web App) support for offline use
+Place all project files (HTML, CSS, JS, assets) in a single directory.
 
-Enhanced chatbot with AI/NLP
+## API Keys
+
+The project uses a NASA API key. The default demo key is included:
+
+text
+const NASA_API_KEY = "OoxckJ8QG8S9kgchyGiuOayPOtcBevJ63MP01UOz";
+For higher usage limits, request your own NASA API key.
+
+Run the Application
+
+Open index.html in your web browser.
+
+No build or server setup is required; the app runs entirely client-side.
 
 ### 🙋‍♂️ Authors
 
