@@ -123,11 +123,6 @@ No build or server setup is required; the app runs entirely client-side.
 
  [Linkedin](https://www.linkedin.com/in/arul-h-r-s-020a81342)
 
-
-## AANYA MALLAREDDY
-
-[Linkedin](https://www.linkedin.com/in/aanya-mallareddy-b1b0a0355)
-
 ## 📢 Acknowledgments
 
 NASA Open APIs
